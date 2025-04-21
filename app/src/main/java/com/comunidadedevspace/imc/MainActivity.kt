@@ -3,6 +3,7 @@ package com.comunidadedevspace.imc
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
 
 class MainActivity : AppCompatActivity() {
@@ -21,13 +22,31 @@ class MainActivity : AppCompatActivity() {
         val btnCalcular = findViewById<Button>(R.id.btn_calcular)
 
         btnCalcular.setOnClickListener {
-            val peso : Float = edtpeso.text.toString().toFloat()
-            val altura : Float = adtaltura.text.toString().toFloat()
+            val pesostr: String = edtpeso.text.toString()
+            val alturastr: String = adtaltura.text.toString()
 
-            val alturaQ2 = altura * altura
-            val resultado = peso / alturaQ2
 
-        println("ação do botão" + resultado)
+            if (pesostr == "" || alturastr == "") {
+
+                Snackbar.make(
+                    edtpeso,
+                    "Preencha todos os campos",
+                    Snackbar.LENGTH_LONG
+                ).show()
+
+            } else {
+                //Mostrar mensagem para usuario
+
+                val peso = pesostr.toFloat()
+                val altura = alturastr.toFloat()
+
+                val alturaQ2 = altura * altura
+                val resultado = peso / alturaQ2
+
+                println("ação do botão" + resultado)
+            }
+
+
         }
 
 
